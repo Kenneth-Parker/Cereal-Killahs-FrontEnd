@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 
 const Cereals = () => {
-    const API = import.meta.env.
+    const API = import.meta.env.VITE_URL;
 
     return (
         <>
