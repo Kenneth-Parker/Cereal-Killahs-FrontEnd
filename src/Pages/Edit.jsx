@@ -1,9 +1,12 @@
-const Edit = () => {
+import CerealEditForm from "../Components/CerealEditForm";
+
+function Edit() {
   return (
-    <>
-      <h3>EDIT CEREALS - REQ FETCH TO ID</h3>
-    </>
+    <div className="New Edit">
+      <h2>Edit</h2>
+      <CerealEditForm />
+    </div>
   );
-};
+}
 
 export default Edit;

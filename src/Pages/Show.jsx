@@ -1,10 +1,12 @@
-const Show = () => {
-    return (
-      <>
-        <h3>Show CEREALS - REQ FETCH TO ID</h3>
-      </>
-    );
-  };
-  
-  export default Show;
-  
+import CerealDetails from "../Components/CerealDetails";
+
+function Show() {
+  return (
+    <div className="Show">
+      <h2>Show</h2>
+      <CerealDetails />
+    </div>
+  );
+}
+
+export default Show;
