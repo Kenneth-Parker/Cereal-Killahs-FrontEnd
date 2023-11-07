@@ -1,7 +1,13 @@
+import CerealDetails from "../components/CerealDetails";
+
 const Show = () => {
     return (
       <>
-        <h3>Show CEREALS - REQ FETCH TO ID</h3>
+        <h2>Solo Cereal Killah - </h2>
+        <div className="cereal-solo">
+
+        <CerealDetails/>
+        </div>
       </>
     );
   };
