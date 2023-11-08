@@ -1,5 +1,9 @@
 
 
-li {
-text-decoration: none;
+h3 {
+    color: rgb(150, 150, 236);
+}
+ul {
+    list-style-type: circle;
+    color: rgb(219, 123, 219);
 }

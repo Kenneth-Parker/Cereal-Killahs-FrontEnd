@@ -28,7 +28,15 @@ const CerealDetails = () => {
   }, [cereals.name]);
 
 // handleDelete id function - navigate to cereals
-
+const handleDelete = () => {
+    try {
+      fetch(`${API}/cereals/${index}`, {
+        method: "DELETE",
+      }).then(() => navigate(`/cereals`));
+    } catch (err) {
+      return err;
+    }
+  };
 
   return (
     <>
@@ -44,7 +52,7 @@ const CerealDetails = () => {
         <li>Brand: {cereals.brand}</li>
         <li>Type: {cereals.type}</li>
         <li>Price: ${cereals.price}</li>
-        <li> Favorite: TroubleShoot{cereals.is_favorite}</li>
+        <li>Favorite: TroubleShoot{cereals.is_favorite}</li>
         <li>Rating: {cereals.rating}</li>
       </ul>
 
@@ -63,8 +71,8 @@ const CerealDetails = () => {
         </div>
         <div>
           {" "}
-          {/* <button onClick={handleDelete}>Delete</button>
-          {!background ? <h1>No such cereal</h1> : null} */}
+          <button onClick={handleDelete}>Delete</button>
+          {/* {!background ? <h1>No such cereal</h1> : null} */}
         </div>
       </div>
     </>
