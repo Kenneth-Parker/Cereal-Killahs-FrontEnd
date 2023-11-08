@@ -11,7 +11,7 @@ function CerealEditForm() {
     brand: "",
     type: "",
     price: 0,
-    isFavorite: false,
+    is_favorite: false,
     rating: 0,
   });
 
@@ -22,7 +22,7 @@ function CerealEditForm() {
   const handleCheckboxChange = () => {
     setCereal({
       ...cereal,
-      isFavorite: !cereal.isFavorite,
+      is_favorite: !cereal.is_favorite,
     });
   };
 
@@ -123,12 +123,12 @@ function CerealEditForm() {
           placeholder="Rating"
         />
         <br />
-        <label htmlFor="isFavorite">Favorite:</label>
+        <label htmlFor="is_favorite">Favorite:</label>
         <input
-          id="isFavorite"
+          id="is_favorite"
           type="checkbox"
           onChange={handleCheckboxChange}
-          checked={cereal.isFavorite}
+          checked={cereal.is_favorite}
         />
         <br />
         <br />
