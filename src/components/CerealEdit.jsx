@@ -24,29 +24,37 @@ const CerealsEdit = () => {
     setCereals({ ...cereals, isFavorite: !cereals.isFavorite });
   };
 
-
-  
   return (
-    <div className="edit-cereal">
-      <form>
-        <label htmlFor="name"> Name: </label>
-        <input type="text" />
+    <>
+      <div className="edit-cereal">
+        <form>
+          <label htmlFor="name"> Name: </label>
+          <input type="text" />
 
-        <label htmlFor="brand"> Brand: </label>
-        <input type="text" />
+          <label htmlFor="brand"> Brand: </label>
+          <input type="text" />
 
-        <label htmlFor="type"> Type: </label>
-        <input type="text" />
+          <label htmlFor="type"> Type: </label>
+          <input type="text" />
 
-        <label htmlFor="price"> Price: </label>
-        <input type="number" />
+          <label htmlFor="price"> Price: </label>
+          <input type="number" />
 
-        <label htmlFor="isFavorite"></label>
-        <input type="checkbox" />
+          <label htmlFor="isFavorite"></label>
+          <input type="checkbox" />
 
-        <label htmlFor="rating"></label>
-        <input type="color" />
-      </form>
-    </div>
+          <label htmlFor="rating"></label>
+          <input type="color" />
+        </form>
+      </div>
+      <div>
+        {" "}
+        <Link to={`/colors/${index}`}>
+        <button>Nevermind!</button>
+      </Link>
+      </div>
+    </>
   );
 };
+
+export default CerealsEdit;

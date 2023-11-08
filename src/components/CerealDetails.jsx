@@ -1,11 +1,21 @@
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import '../styles/cerealDetails.css'
+import "../styles/cerealDetails.css";
 
-const API = import.meta.env.VITE_URL;
+const API = import.meta.env.VITE_PORT;
 
 const CerealDetails = () => {
-  const [cereals, setCereals] = useState({ name: "" });
+  const [cereals, setCereals] = useState({
+    name: "",
+    brand: "",
+    type: "",
+    price: 0,
+    isFavorite: false,
+    rating: 5,
+    image_url: "",
+  });
+
+  //   const [cerImg, setCerImg] = useState("");
   const { index } = useParams();
 
   let navigate = useNavigate();
@@ -15,7 +25,20 @@ const CerealDetails = () => {
       try {
         fetch(`${API}/cereals/${index}`)
           .then((r) => r.json())
-          .then((res) => setCereals(res));
+          .then((res) => {
+            // Set the cereals state with the extracted image URL
+
+            setCereals(res);
+            //         if (res.id) {
+            //             setCerImg(res.data.image)
+            //         } else {
+            //             // stringify
+            //                     console.log("Image Path:", res.data.image);
+
+            //         console.log("Image data  Path:", res.image_url)
+            //         // console.log("Image Path:", res.data.image)
+            //   }
+          });
       } catch (err) {
         return err;
       }
@@ -23,12 +46,21 @@ const CerealDetails = () => {
     fetchCereal();
   }, [index]);
 
-  useEffect(() => {
-    const { name } = cereals;
-  }, [cereals.name]);
+  //   const showImage = (imagePath) => {
+  //     // Update the selectedImage state to display the clicked cereal's image
+  //     setCerImg(imagePath);
+  //   };
 
-// handleDelete id function - navigate to cereals
-const handleDelete = () => {
+  //   useEffect(() => {
+  //     const { name } = cereals;
+  //   }, [cereals.name]);
+
+  //   useEffect(() => {
+  //     setCerImg(cereals.data);
+  //   }, []);
+
+  // handleDelete id function - navigate to cereals
+  const handleDelete = () => {
     try {
       fetch(`${API}/cereals/${index}`, {
         method: "DELETE",
@@ -37,25 +69,28 @@ const handleDelete = () => {
       return err;
     }
   };
-  cereals.isFavorite =  cereals.is_favorite
 
-//   numberNoHyphens = number.replace(/-/g,"")
+  cereals.isFavorite = cereals.is_favorite;
+  //   numberNoHyphens = number.replace(/-/g,"")
+  //    imageUrl = cereals.data.image || "src/assets/honey-nut-cheerios.webp";
+
+  //
+  // render cereals.name checking id
   return (
     <>
-      <h2>Hellloooooo it's me 1 cereal : how to get isFAvorite to show</h2>
-
       <h3>
         {cereals.isFavorite ? <span>⭐️</span> : null}
         <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
         {cereals.name}
       </h3>
+      <img src={cereals.image_url} alt={cereals.name} />
+      {/* <img src={cereals.data.image} alt={cereals.name} /> */}
 
       <ul>
         <li>Brand: {cereals.brand}</li>
         <li>Type: {cereals.type}</li>
         <li>Price: ${cereals.price}</li>
         <li>Rating: {cereals.rating}</li>
-        <li>Image: <img src={cereals.image} /></li>
       </ul>
 
       <div className="showNavigation">
