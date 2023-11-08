@@ -1,14 +1,15 @@
 import { useState, useEffect } from "react";
 import Cereal from "./Cereal";
 
-const API = import.meta.env.VITE_PORT;
+const appUrl = import.meta.env.VITE_APP_URL;
+const port = import.meta.env.VITE_PORT;
 
 function Cereals() {
   const [cereals, setCereals] = useState([]);
 
   const fetchData = async () => {
     try {
-      fetch(`${API}/cereals`)
+      fetch(`${port}/cereals`)
         .then(res => res.json())
         .then(res => {
           setCereals(res)
