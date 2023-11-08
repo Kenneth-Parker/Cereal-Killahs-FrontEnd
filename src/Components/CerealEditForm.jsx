@@ -81,7 +81,7 @@ function CerealEditForm() {
           value={cereal.name}
           type="text"
           onChange={handleTextChange}
-          placeholder={cereal.name}
+          placeholder={`${cereal.name}`}
           required
         />
         <br />
@@ -128,7 +128,7 @@ function CerealEditForm() {
           id="isFavorite"
           type="checkbox"
           onChange={handleCheckboxChange}
-          checked={cereal.is_Favorite}
+          checked={cereal.isFavorite}
         />
         <br />
         <br />
