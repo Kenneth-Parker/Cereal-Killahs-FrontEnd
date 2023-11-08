@@ -37,7 +37,9 @@ const handleDelete = () => {
       return err;
     }
   };
+  cereals.isFavorite =  cereals.is_favorite
 
+//   numberNoHyphens = number.replace(/-/g,"")
   return (
     <>
       <h2>Hellloooooo it's me 1 cereal : how to get isFAvorite to show</h2>
@@ -52,8 +54,8 @@ const handleDelete = () => {
         <li>Brand: {cereals.brand}</li>
         <li>Type: {cereals.type}</li>
         <li>Price: ${cereals.price}</li>
-        <li>Favorite: TroubleShoot{cereals.is_favorite}</li>
         <li>Rating: {cereals.rating}</li>
+        <li>Image: <img src={cereals.image} /></li>
       </ul>
 
       <div className="showNavigation">

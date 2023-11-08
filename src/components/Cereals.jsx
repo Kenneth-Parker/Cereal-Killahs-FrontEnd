@@ -27,7 +27,7 @@ const Cereals = () => {
       {cereals.map((cereal) => {
         return <Cereal key={cereal.id} cereal={cereal} />;
       })}
-      
+
     </div>
   );
 };
