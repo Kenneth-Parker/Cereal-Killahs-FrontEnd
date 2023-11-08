@@ -1,28 +1,28 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 
-const API = import.meta.env.VITE_API_URL;
+const API = import.meta.env.VITE_APP_URL;
 
 function CerealNewForm() {
   const navigate = useNavigate();
   const [cereal, setCereal] = useState({
     name: "",
-    isFavorite: false,
+    brand: "",
+    type: "",
+    price: "",
+    is_favorite: false, 
+    rating: 0, 
   });
 
   // Add a cereal. Redirect to the index view.
   const addCereal = () => {
-    const cerealData = { 
-      name: cereal.name, 
-      is_favorite: cereal.isFavorite
-    }
     try {
       fetch(`${API}/cereals`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify(cerealData)
+        body: JSON.stringify(cereal)
       })
         .then(res => res.json())
         .then(() => navigate('/cereals'))
@@ -36,7 +36,7 @@ function CerealNewForm() {
   };
 
   const handleCheckboxChange = () => {
-    setCereal({ ...cereal, isFavorite: !cereal.isFavorite });
+    setCereal({ ...cereal, is_favorite: !cereal.is_favorite });
   };
 
   const handleSubmit = (event) => {
@@ -57,13 +57,58 @@ function CerealNewForm() {
           required
         />
 
+        <label htmlFor="brand">Brand:</label>
+        <input
+          id="brand"
+          value={cereal.brand}
+          type="text"
+          onChange={handleTextChange}
+          placeholder="Brand of Cereal"
+          required
+        />
+
+        <label htmlFor="type">Type:</label>
+        <input
+          id="type"
+          value={cereal.type}
+          type="text"
+          onChange={handleTextChange}
+          placeholder="Type of Cereal"
+          required
+        />
+
+        <label htmlFor="price">Price:</label>
+        <input
+          id="price"
+          value={cereal.price}
+          type="number"
+          step="0.01"
+          onChange={handleTextChange}
+          placeholder="Price of Cereal"
+          required
+        />
+
         <label htmlFor="isFavorite">Favorite:</label>
         <input
           id="isFavorite"
           type="checkbox"
           onChange={handleCheckboxChange}
-          checked={cereal.isFavorite}
+          checked={cereal.is_favorite}
         />
+
+        <label htmlFor="rating">Rating:</label>
+        <input
+          id="rating"
+          value={cereal.rating}
+          type="number"
+          min="0"
+          max="5"
+          step="1"
+          onChange={handleTextChange}
+          placeholder="Rating of Cereal"
+          required
+        />
+
         <br />
         <br />
         <button type="submit">Submit</button>

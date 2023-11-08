@@ -23,8 +23,8 @@ function App() {
           <Route path="/" element={<Home />} />
             <Route path="/cereals" element={<Index />} />
             <Route path="/cereals/new" element={<New />} />
-            <Route path="/cereals/:index" element={<Show />} />
-            <Route path="/cereals/:index/edit" element={<Edit />} />
+            <Route path="/cereals/:id" element={<Show />} />
+            <Route path="/cereals/:id/edit" element={<Edit />} />
             {/* <Route path="*" element={<FourOFour />} /> */}
           </Routes>
         </main>

@@ -1,55 +1,79 @@
 import { useState, useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 
-const API = import.meta.env.VITE_API_URL;
+const appUrl = import.meta.env.VITE_APP_URL;
 
 function CerealEditForm() {
-  let { index } = useParams();
   const navigate = useNavigate();
-
+  const { id } = useParams();
   const [cereal, setCereal] = useState({
     name: "",
+    brand: "",
+    type: "",
+    price: 0,
     isFavorite: false,
+    rating: 0,
   });
 
-  const handleTextChange = (event) => {
-    setCereal({ ...cereal, [event.target.id]: event.target.value });
+  const handleTextChange = (e) => {
+    setCereal({ ...cereal, [e.target.id]: e.target.value });
   };
 
   const handleCheckboxChange = () => {
-    setCereal({ ...cereal, isFavorite: !cereal.isFavorite });
+    setCereal({
+      ...cereal,
+      isFavorite: !cereal.isFavorite,
+    });
   };
 
-  // Update a cereal. Redirect to show view
-  const updateCereal = () => {
-    fetch(`${API}/cereals/${index}`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(cereal)
-    })
-      .then(res => res.json())
-      .then(res => {
-        console.log(res)
-        navigate(`/cereals/${index}`)
-      })
+  const updateCereal = async () => {
+    try {
+      const response = await fetch(`${appUrl}/cereals/${id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(cereal),
+      });
+
+      if (response.ok) {
+        navigate(`/cereals/${id}`);
+      } else {
+        console.error("Cereal update failed:", response.status);
+      }
+    } catch (error) {
+      console.error("Error while updating cereal:", error);
+    }
   };
 
-  // On page load, fill in the form with the cereal data.
   useEffect(() => {
-    fetch(`${API}/cereals/${index}`)
-      .then(res => res.json())
-      .then(res => setCereal(res))
-  }, [])
+    const fetchCerealData = async () => {
+      try {
+        const response = await fetch(`${appUrl}/cereals/${id}`);
+        if (response.ok) {
+          const cerealData = await response.json();
+          
+          const updatedCerealData = {
+            ...cereal,
+            ...cerealData,
+          };
+          setCereal(updatedCerealData);
+        } else {
+          console.error("Failed to fetch cereal data:", response.status);
+        }
+      } catch (error) {
+        console.error("Error while fetching cereal data:", error);
+      }
+    };
+    fetchCerealData();
+  }, [id]);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleSubmit = (e) => {
+    e.preventDefault();
     updateCereal();
   };
 
   return (
-    <div className="Edit">
+    <div className="CerealEditForm">
+      <h1>Edit Cereal</h1>
       <form onSubmit={handleSubmit}>
         <label htmlFor="name">Name:</label>
         <input
@@ -57,23 +81,61 @@ function CerealEditForm() {
           value={cereal.name}
           type="text"
           onChange={handleTextChange}
-          placeholder="Name of Cereal"
+          placeholder={cereal.name}
           required
         />
-
+        <br />
+        <label htmlFor="brand">Brand:</label>
+        <input
+          id="brand"
+          value={cereal.brand}
+          type="text"
+          onChange={handleTextChange}
+          placeholder="Brand"
+        />
+        <br />
+        <label htmlFor="type">Type:</label>
+        <input
+          id="type"
+          value={cereal.type}
+          type="text"
+          onChange={handleTextChange}
+          placeholder="Type"
+        />
+        <br />
+        <label htmlFor="price">Price:</label>
+        <input
+          id="price"
+          value={cereal.price}
+          type="number"
+          step="0.01"
+          onChange={handleTextChange}
+          placeholder="Price"
+        />
+        <br />
+        <label htmlFor="rating">Rating:</label>
+        <input
+          id="rating"
+          value={cereal.rating}
+          type="number"
+          step="1"
+          onChange={handleTextChange}
+          placeholder="Rating"
+        />
+        <br />
         <label htmlFor="isFavorite">Favorite:</label>
         <input
           id="isFavorite"
           type="checkbox"
           onChange={handleCheckboxChange}
-          checked={cereal.isFavorite}
+          checked={cereal.is_Favorite}
         />
         <br />
         <br />
         <button type="submit">Submit</button>
       </form>
       <br />
-      <Link to={`/cereals/${index}`}>
+      <Link to={`/cereals/${id}`}>
         <button>Nevermind!</button>
       </Link>
     </div>

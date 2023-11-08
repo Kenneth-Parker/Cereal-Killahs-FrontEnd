@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom'; 
 
 function DisplayCereals({ cereals }) {
   return (
@@ -7,7 +8,9 @@ function DisplayCereals({ cereals }) {
       <ul>
         {cereals.map((cereal) => (
           <li key={cereal.id}>
-            {cereal.name}: ${cereal.price}
+            <Link to={`/cereals/${cereal.id}`}>
+              {cereal.name}: ${cereal.price}
+            </Link>
           </li>
         ))}
       </ul>

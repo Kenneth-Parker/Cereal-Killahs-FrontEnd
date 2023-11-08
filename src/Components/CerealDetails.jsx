@@ -1,73 +1,66 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 
-const API = import.meta.env.VITE_API_URL;
+const appUrl = import.meta.env.VITE_APP_URL;
+const port = import.meta.env.VITE_PORT;
 
 function CerealDetails() {
-  const [cereal, setCereal] = useState({ name: "" });
-  const [background, setBackground] = useState("");
-  let navigate = useNavigate();
-  let { index } = useParams();
+  const [cereal, setCereal] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const { id } = useParams();
+  const navigate = useNavigate();
 
-  // On page load, load cereal details
   useEffect(() => {
-    const fetchCereal = async () => {
-      try {
-        fetch(`${API}/cereals/${index}`)
-        .then(res => res.json())
-        .then(res => {
-          setCereal(res)
-        })
-      } catch (error) {
-        return error
-      }
-    }
-    fetchCereal()
-  }, [index])
+    fetch(`${(appUrl)}/cereals/${id}`)
+      .then((response) => response.json())
+      .then((data) => {
+        setCereal(data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        setError(error.message);
+        setLoading(false);
+      });
+  }, [id]);
 
-  // Be able to delete a cereal. Return to index view.
   const handleDelete = () => {
-    fetch(`${API}/cereals/${index}`, {
-      method: 'DELETE'
+    fetch(`${(appUrl)}/cereals/${id}`, {
+      method: 'DELETE',
     })
-      .then(() => navigate('/cereals'))
+      .then((response) => {
+        if (response.ok) {
+          navigate('/cereals');
+        } else {
+          throw new Error('Failed to delete cereal');
+        }
+      })
+      .catch((error) => {
+        setError(error.message);
+      });
   };
-  useEffect(() => {
-    const { name } = cereal;
-    setBackground(CSS.supports("cereal", name.toLowerCase()));
-  }, [cereal.name]);
 
   return (
-    <article
-      style={{ backgroundCereal: cereal.name }}
-      className={!background ? "no-such-cereal" : null}
-    >
-      <h3>
-        {cereal.isFavorite ? <span>⭐️</span> : null}
-        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-        {cereal.name}
-      </h3>
-
-      <div className="showNavigation">
-        <div>
-          {" "}
-          <Link to={`/cereals`}>
-            <button>Back</button>
-          </Link>
-        </div>
-        <div>
-          {" "}
-          <Link to={`/cereals/${index}/edit`}>
-            <button>Edit</button>
-          </Link>
-        </div>
-        <div>
-          {" "}
-          <button onClick={handleDelete}>Delete</button>
-          {!background ? <h1>No such cereal</h1> : null}
-        </div>
-      </div>
-    </article>
+    <div className="cereal-details">
+      {loading ? (
+        <p>Loading...</p>
+      ) : error ? (
+        <p>{error}</p>
+      ) : (
+        <>
+          <h3>{cereal.is_favorite ? "⭐️" : null} {cereal.name}</h3>
+          <p>Brand: {cereal.brand}</p>
+          <p>Type: {cereal.type}</p>
+          <p>Price: ${cereal.price}</p>
+          <p>Rating: {cereal.rating}</p>
+          <div>
+            <Link to={`/cereals`}><button>Back</button></Link>
+            <Link to={`/cereals/${id}/edit`}><button>Edit</button></Link>
+            <button onClick={handleDelete}>Delete</button>
+          </div>
+        </>
+      )}
+    </div>
   );
 }
 

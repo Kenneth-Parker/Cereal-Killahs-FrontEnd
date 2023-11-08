@@ -7,7 +7,7 @@ export default function NavBar() {
         <Link to="/cereals">Cereals</Link>
       </h1>
       <button>
-        <Link to="/cereals/new">New Cereal</Link>
+        <Link to="/cereals/new">Add New Cereal</Link>
       </button>
     </nav>
   );
