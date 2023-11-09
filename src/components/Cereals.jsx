@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Cereal from "./Cereal";
 
 const Cereals = () => {
-  const API = import.meta.env.VITE_URL;
+  const API = import.meta.env.VITE_PORT;
   const [cereals, setCereals] = useState([]);
 
   const fetchData = async () => {

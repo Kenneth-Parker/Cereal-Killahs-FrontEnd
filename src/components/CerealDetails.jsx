@@ -26,18 +26,7 @@ const CerealDetails = () => {
         fetch(`${API}/cereals/${index}`)
           .then((r) => r.json())
           .then((res) => {
-            // Set the cereals state with the extracted image URL
-
             setCereals(res);
-            //         if (res.id) {
-            //             setCerImg(res.data.image)
-            //         } else {
-            //             // stringify
-            //                     console.log("Image Path:", res.data.image);
-
-            //         console.log("Image data  Path:", res.image_url)
-            //         // console.log("Image Path:", res.data.image)
-            //   }
           });
       } catch (err) {
         return err;
@@ -45,11 +34,6 @@ const CerealDetails = () => {
     };
     fetchCereal();
   }, [index]);
-
-  //   const showImage = (imagePath) => {
-  //     // Update the selectedImage state to display the clicked cereal's image
-  //     setCerImg(imagePath);
-  //   };
 
   //   useEffect(() => {
   //     const { name } = cereals;
@@ -61,36 +45,48 @@ const CerealDetails = () => {
 
   // handleDelete id function - navigate to cereals
   const handleDelete = () => {
-    try {
-      fetch(`${API}/cereals/${index}`, {
-        method: "DELETE",
-      }).then(() => navigate(`/cereals`));
-    } catch (err) {
-      return err;
+    const isConfirmed = window.confirm(
+      "Are you sure you want to delete this object?"
+    );
+    if (isConfirmed) {
+      try {
+        fetch(`${API}/cereals/${index}`, {
+          method: "DELETE",
+        }).then(() => navigate(`/cereals`));
+      } catch (err) {
+        return err;
+      }
+    } else {
+      // User clicked NeverMind, do nothing or show a message
+      console.log("Deletion canceled by user");
     }
   };
 
   cereals.isFavorite = cereals.is_favorite;
-  //   numberNoHyphens = number.replace(/-/g,"")
-  //    imageUrl = cereals.data.image || "src/assets/honey-nut-cheerios.webp";
 
-  //
-  // render cereals.name checking id
   return (
-    <>
+    <div>
       <h3>
         {cereals.isFavorite ? <span>⭐️</span> : null}
         <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
         {cereals.name}
       </h3>
+
       <img src={cereals.image_url} alt={cereals.name} />
-      {/* <img src={cereals.data.image} alt={cereals.name} /> */}
 
       <ul>
-        <li>Brand: {cereals.brand}</li>
-        <li>Type: {cereals.type}</li>
-        <li>Price: ${cereals.price}</li>
-        <li>Rating: {cereals.rating}</li>
+        <li>
+          <span>Booking Officer:</span> {cereals.brand}
+        </li>
+        <li>
+          <span>Weapon(s):</span> {cereals.type}
+        </li>
+        <li>
+          <span>Charge:</span> ${cereals.price}
+        </li>
+        <li>
+          <span>Sentence:</span> {cereals.rating}
+        </li>
       </ul>
 
       <div className="showNavigation">
@@ -112,7 +108,7 @@ const CerealDetails = () => {
           {/* {!background ? <h1>No such cereal</h1> : null} */}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

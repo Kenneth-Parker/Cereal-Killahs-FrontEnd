@@ -7,3 +7,13 @@ ul {
     list-style-type: circle;
     color: rgb(219, 123, 219);
 }
+
+/* img {
+    background-image: none;
+} */
+
+li span {
+    color:rgb(61, 233, 170);
+font-weight: 700;
+/* text-Shadow: #e8d1f9 2px 0 0; */
+}
