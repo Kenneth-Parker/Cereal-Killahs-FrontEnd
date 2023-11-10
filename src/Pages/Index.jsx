@@ -24,7 +24,7 @@ function Index() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await fetch(`${import.meta.env.VITE_APP_URL}/cereals`);
+        const response = await fetch(`${import.meta.env.VITE_PORT}/cereals`);
         if (!response.ok) {
           throw new Error('Failed to fetch data');
         }

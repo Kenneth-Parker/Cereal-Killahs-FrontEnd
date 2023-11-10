@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 
-const API = import.meta.env.VITE_APP_URL;
+// const API = import.meta.env.VITE_API_URL;
+const API = import.meta.env.VITE_PORT;
 
 function CerealNewForm() {
   const navigate = useNavigate();
@@ -9,25 +10,35 @@ function CerealNewForm() {
     name: "",
     brand: "",
     type: "",
-    price: "",
-    is_favorite: false, 
-    rating: 0, 
+    price: 0,
+    is_favorite: false,
+    rating: 5,
+    image_url: "",
   });
 
   // Add a cereal. Redirect to the index view.
   const addCereal = () => {
+    const cerealData = {
+      name: cereal.name,
+      brand: cereal.brand,
+      type: cereal.type,
+      price: cereal.price,
+      is_favorite: cereal.is_favorite,
+      rating: cereal.rating,
+      image_url: cereal.image_url,
+    };
     try {
       fetch(`${API}/cereals`, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json'
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(cereal)
+        body: JSON.stringify(cerealData),
       })
-        .then(res => res.json())
-        .then(() => navigate('/cereals'))
+        .then((res) => res.json())
+        .then(() => navigate("/cereals"));
     } catch (error) {
-      return error
+      return error;
     }
   };
 
@@ -82,15 +93,16 @@ function CerealNewForm() {
           id="price"
           value={cereal.price}
           type="number"
+          min="0"
           step="0.01"
           onChange={handleTextChange}
           placeholder="Price of Cereal"
           required
         />
 
-        <label htmlFor="isFavorite">Favorite:</label>
+        <label htmlFor="is_favorite">Favorite:</label>
         <input
-          id="isFavorite"
+          id="is_favorite"
           type="checkbox"
           onChange={handleCheckboxChange}
           checked={cereal.is_favorite}
@@ -105,7 +117,17 @@ function CerealNewForm() {
           max="5"
           step="1"
           onChange={handleTextChange}
-          placeholder="Rating of Cereal"
+          placeholder="Rating"
+          required
+        />
+
+        <label htmlFor="image_url">Image URL:</label>
+        <input
+          id="image_url"
+          value={cereal.image_url}
+          type="url"
+          onChange={handleTextChange}
+          placeholder="Image URL of Cereal"
           required
         />
 
