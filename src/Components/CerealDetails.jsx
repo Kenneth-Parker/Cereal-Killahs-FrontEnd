@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 
-const appUrl = import.meta.env.VITE_APP_URL;
-const port = import.meta.env.VITE_PORT;
+// const API = import.meta.env.VITE_API_URL;
+const API = import.meta.env.VITE_PORT;
 
 const CerealDetails = () => {
   const [cereals, setCereals] = useState({
@@ -21,7 +21,7 @@ const CerealDetails = () => {
   useEffect(() => {
     const fetchCereal = async () => {
       try {
-        fetch(`${port}/cereals/${id}`)
+        fetch(`${API}/cereals/${id}`)
           .then((r) => r.json())
           .then((res) => {
             setCereals(res);
@@ -39,7 +39,7 @@ const CerealDetails = () => {
     );
     if (isConfirmed) {
       try {
-        fetch(`${port}/cereals/${id}`, {
+        fetch(`${API}/cereals/${id}`, {
           method: "DELETE",
         }).then(() => navigate(`/cereals`));
       } catch (err) {
