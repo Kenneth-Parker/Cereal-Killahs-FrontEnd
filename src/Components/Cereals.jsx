@@ -4,8 +4,8 @@ import { useState, useEffect } from "react";
 import './Cereals.css';
 import './Cereal.css';
 
-const API = import.meta.env.VITE_APP_URL;
-// const API = import.meta.env.VITE_PORT;
+// const API = import.meta.env.VITE_APP_URL;
+const API = import.meta.env.VITE_PORT;
 
 function Cereals() {
   const [cereals, setCereals] = useState([]);
