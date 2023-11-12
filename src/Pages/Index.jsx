@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import "./Index.css"
 
-const API = import.meta.env.VITE_API_URL;
+const API = import.meta.env.VITE_APP_URL;
 // const API = import.meta.env.VITE_PORT;
 
 function DisplayCereals({ cereals }) {
