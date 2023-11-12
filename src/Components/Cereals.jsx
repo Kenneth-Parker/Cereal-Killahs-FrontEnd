@@ -4,8 +4,8 @@ import { useState, useEffect } from "react";
 import './Cereals.css';
 import './Cereal.css';
 
-const appUrl = import.meta.env.VITE_APP_URL;
-const port = import.meta.env.VITE_PORT;
+const API = import.meta.env.VITE_APP_URL;
+// const API = import.meta.env.VITE_PORT;
 
 function Cereals() {
   const [cereals, setCereals] = useState([]);
@@ -13,7 +13,7 @@ function Cereals() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`${port}/cereals`);
+        const response = await fetch(`${API}/cereals`);
         if (response.ok) {
           const data = await response.json();
           setCereals(data);

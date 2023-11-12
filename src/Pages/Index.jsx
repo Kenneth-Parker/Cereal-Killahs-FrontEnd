@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import "./Index.css"
 
+const API = import.meta.env.VITE_API_URL;
+// const API = import.meta.env.VITE_PORT;
+
 function DisplayCereals({ cereals }) {
   return (
     <div>
@@ -33,7 +36,7 @@ function Index() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await fetch(`${import.meta.env.VITE_PORT}/cereals`);
+        const response = await fetch(`${API}/cereals`);
         if (!response.ok) {
           throw new Error('Failed to fetch data');
         }
