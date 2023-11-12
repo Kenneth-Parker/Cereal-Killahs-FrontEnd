@@ -15,9 +15,9 @@ function App() {
 
 
   return (
-    <div className="App">
+    <div className="App section-with-background">
       <Router>
-        <NavBar />
+       <div className="NavBar" ><NavBar /></div> 
         <main>
           <Routes>
           <Route path="/" element={<Home />} />

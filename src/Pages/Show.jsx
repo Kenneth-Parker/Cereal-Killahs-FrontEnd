@@ -1,10 +1,10 @@
 import CerealDetails from "../Components/CerealDetails";
+import './Show.css';
 
 function Show() {
   return (
-    <div className="Show">
-      <h2>Show</h2>
-      <CerealDetails />
+    <div className="show-details">
+    <CerealDetails />
     </div>
   );
 }

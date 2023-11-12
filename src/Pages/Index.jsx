@@ -1,22 +1,31 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom'; 
+import { Link } from 'react-router-dom';
+import "./Index.css"
 
 function DisplayCereals({ cereals }) {
   return (
     <div>
-      <h2>Cereals</h2>
+      {/* <h2>Cereals</h2> */}
       <ul>
         {cereals.map((cereal) => (
           <li key={cereal.id}>
             <Link to={`/cereals/${cereal.id}`}>
-              {cereal.name}: ${cereal.price}
+              <img
+                src={cereal.image_url}
+                alt="cereals Image"
+                style={{ width: '75px', height: 'auto' }}
+              />
+             <br />  {cereal.name}: {cereal.price}
             </Link>
+            <br />
+            <br />
           </li>
         ))}
       </ul>
     </div>
   );
 }
+
 
 function Index() {
   const [cereals, setCereals] = useState([]);
@@ -40,7 +49,6 @@ function Index() {
 
   return (
     <div className="Index">
-      <h2>Index</h2>
       <DisplayCereals cereals={cereals} />
     </div>
   );

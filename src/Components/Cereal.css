@@ -1,0 +1,26 @@
+.cereal-card {
+  display: flex;
+  border: 1px solid #ddd;
+  margin: 10px;
+  padding: 10px;
+}
+
+.cereal-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+}
+
+.cereal-details {
+  flex: 3;
+  padding: 0 10px;
+}
+
+.cereal-rating {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

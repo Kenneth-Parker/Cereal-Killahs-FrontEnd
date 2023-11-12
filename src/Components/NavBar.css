@@ -1,0 +1,23 @@
+
+.grid-container {
+    display: grid;
+    grid-template-rows: 50% auto;
+    gap: 0px;
+}
+
+.logo-container {
+    background-color: rgba(0, 105, 70, 0.376);
+    border: solid 2px white;
+}
+
+.nav-container {
+    background-color: rgba(127, 255, 212, 0.22);
+    border: solid 2px white;
+    height: 100px;
+    font-family:'Impact', sans-serif;
+}
+
+.element1 {
+    margin-top: -1px;
+    margin-bottom: 0;
+}
