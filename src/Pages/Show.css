@@ -1,0 +1,6 @@
+.show-details{
+    display: grid;
+    border: solid 22px rgba(0, 128, 128, 0.25);
+    border-radius: 2%;
+    margin: -22px;
+}

@@ -40,3 +40,20 @@
 .read-the-docs {
   color: #888;
 }
+/*=====me-below=react-above=====*/
+
+/* app.css */
+
+body {
+  background-image: url('./assets/cereal_Tealbckgnd.jpg');
+  background-size:100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.section-with-background {
+  background-size: 1000% 1000%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
