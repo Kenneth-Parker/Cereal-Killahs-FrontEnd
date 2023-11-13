@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import './App.css'
 
 import Edit from "./Pages/Edit";
-// import FourOFour from "./Pages/FourOFour";
+import FourOFour from "./Pages/FourOFour";
 import Home from "./Pages/Home";
 import Index from "./Pages/Index";
 import New from "./Pages/New";
@@ -25,7 +25,7 @@ function App() {
             <Route path="/cereals/new" element={<New />} />
             <Route path="/cereals/:id" element={<Show />} />
             <Route path="/cereals/:id/edit" element={<Edit />} />
-            {/* <Route path="*" element={<FourOFour />} /> */}
+            <Route path="*" element={<FourOFour />} />
           </Routes>
         </main>
       </Router>
