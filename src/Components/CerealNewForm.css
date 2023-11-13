@@ -1,6 +1,16 @@
+
 #new {
     display: grid; 
      align-self: center; 
      grid-template-columns: repeat(2, 2fr); 
      width: 30%;
+     align-content: center;
 }
+
+#is_favorite {
+    margin-right: 170px;
+}
+
+/* .element2 {
+    display: none;
+} */
