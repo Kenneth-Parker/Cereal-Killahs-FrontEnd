@@ -1,0 +1,6 @@
+#new {
+    display: grid; 
+     align-self: center; 
+     grid-template-columns: repeat(2, 2fr); 
+     width: 30%;
+}

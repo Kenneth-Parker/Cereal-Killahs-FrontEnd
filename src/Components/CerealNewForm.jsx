@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import './CerealNewForm.css'
+
 
 const API = import.meta.env.VITE_APP_URL;
 // const API = import.meta.env.VITE_PORT;
@@ -57,7 +59,7 @@ function CerealNewForm() {
 
   return (
     <div className="New">
-      <form onSubmit={handleSubmit}>
+      <form id="new" onSubmit={handleSubmit}>
         <label htmlFor="name">Name:</label>
         <input
           id="name"
