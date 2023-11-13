@@ -1,10 +1,12 @@
-import "./Home.css"
+import "./Home.css";
 
 const Home = () => {
   return (
     <div className="Home">
       <h2>Hey There 👋!</h2>
-      <h3>Welcom to the Cereal Killahs app!</h3>
+      <h2>
+        Welcome To The <h1>CEREAL KILLAHS</h1> App!
+      </h2>
     </div>
   );
 }
