@@ -15,9 +15,16 @@
     border: solid 2px white;
     height: 100px;
     font-family:'Impact', sans-serif;
+      display: flexbox;
+    align-items: center;
 }
 
 .element1 {
     margin-top: 1px;
     margin-bottom: 0;
+}
+
+.element2 {
+    margin: 4px;
+   padding: 2px;
 }
