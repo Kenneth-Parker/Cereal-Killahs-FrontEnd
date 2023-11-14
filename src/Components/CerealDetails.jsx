@@ -39,8 +39,11 @@ const CerealDetails = () => {
       "👀 Are u sure u want to delete this jawn?"
     );
     if (isConfirmed) {
+      navigator.vibrate(222);
+
       try {
-        navigator.vibrate(222);
+        navigator.vibrate(300);
+
         fetch(`${API}/cereals/${id}`, {
           method: "DELETE",
         }).then(() => navigate(`/cereals`));
@@ -52,7 +55,6 @@ const CerealDetails = () => {
       console.log("Deletion canceled by user");
     }
   };
-
 
   return (
     <div className="cereal-details">
