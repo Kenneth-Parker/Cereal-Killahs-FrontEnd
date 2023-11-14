@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
-import "./CerealDetails.css"
+import "./CerealDetails.css";
 
 const API = import.meta.env.VITE_APP_URL;
 // const API = import.meta.env.VITE_PORT;
@@ -40,6 +40,7 @@ const CerealDetails = () => {
     );
     if (isConfirmed) {
       try {
+        navigator.vibrate(222);
         fetch(`${API}/cereals/${id}`, {
           method: "DELETE",
         }).then(() => navigate(`/cereals`));
@@ -55,26 +56,31 @@ const CerealDetails = () => {
 
   return (
     <div className="cereal-details">
-        <>
-          <h3>{cereals.is_favorite ? "⭐️" : null} {cereals.name}</h3>
-          <img
-            src={cereals.image_url}
-            alt="cereals Image"
-            style={{ width: '475px', height: 'auto' }}
-          />
-          <p>Brand: {cereals.brand}</p>
-          <p>Type: {cereals.type}</p>
-          <p>Price: ${cereals.price}</p>
-          <p>Rating: {cereals.rating}</p>
-          <div>
-            <Link to={`/cereals`}><button>Back</button></Link>
-            <Link to={`/cereals/${id}/edit`}><button>Edit</button></Link>
-            <button onClick={handleDelete}>Delete</button>
-          </div>
-        </>
+      <>
+        <h3>
+          {cereals.is_favorite ? "⭐️" : null} {cereals.name}
+        </h3>
+        <img
+          src={cereals.image_url}
+          alt="cereals Image"
+          style={{ width: "475px", height: "auto" }}
+        />
+        <p>Brand: {cereals.brand}</p>
+        <p>Type: {cereals.type}</p>
+        <p>Price: ${cereals.price}</p>
+        <p>Rating: {cereals.rating}</p>
+        <div>
+          <Link to={`/cereals`}>
+            <button>Back</button>
+          </Link>
+          <Link to={`/cereals/${id}/edit`}>
+            <button>Edit</button>
+          </Link>
+          <button onClick={handleDelete}>Delete</button>
+        </div>
+      </>
     </div>
   );
-}
+};
 
 export default CerealDetails;
-

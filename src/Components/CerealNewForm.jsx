@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import './CerealNewForm.css'
-
+import "./CerealNewForm.css";
 
 const API = import.meta.env.VITE_APP_URL;
 // const API = import.meta.env.VITE_PORT;
@@ -56,6 +55,7 @@ function CerealNewForm() {
     event.preventDefault();
     addCereal();
   };
+
 
   return (
     <div className="New">
