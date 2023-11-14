@@ -5,7 +5,7 @@ const Home = () => {
     <div className="Home">
       <h2>Hey There 👋!</h2>
       <h3>
-        Welcome To The <h2>CEREAL KILLAHS</h2> App!
+        Welcome To The </h3><h2>CEREAL KILLAHS</h2> <h3>App!
       </h3>
     </div>
   );
