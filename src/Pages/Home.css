@@ -3,11 +3,12 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: px;
-    padding: 0px;
+    margin: 0;
+    padding: 4px;
     border: 1px solid #ddd;
     box-shadow: 0 6px 8px rgba(5, 143, 28, .5);
     background-color: #ffffff65;
+    min-width: 350px;
 }
 
 .Home {
@@ -16,5 +17,5 @@
 }
 
 h3 {
-    text-shadow: 0 7px 11px rgba(128, 0, 128, 0.5);
+    text-shadow: 0 6px 8px rgba(128, 0, 128, 0.5);
 }
