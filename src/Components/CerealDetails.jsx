@@ -35,11 +35,11 @@ const CerealDetails = () => {
   }, [id]);
 
   const handleDelete = () => {
-    const isConfirmed = window.confirm(
+    const isConfirmed = window.confirm(  navigator.vibrate(222),
       "👀 Are u sure u want to delete this jawn?"
     );
     if (isConfirmed) {
-      navigator.vibrate(222);
+    
 
       try {
         navigator.vibrate(300);
